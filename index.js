@@ -66571,7 +66571,7 @@ function getWorkspaceProjects() {
 function getProjectOutputs(projects, project, target) {
     var _a;
     const projectTarget = projects[project].targets[target];
-    let outputs = (_a = projectTarget.outputs) !== null && _a !== void 0 ? _a : [];
+    const outputs = (_a = projectTarget.outputs) !== null && _a !== void 0 ? _a : [];
     const replaceExpressions = (path) => {
         var _a, _b, _c;
         if (!path.includes('{') || !path.includes('}'))
@@ -66583,9 +66583,9 @@ function getProjectOutputs(projects, project, target) {
         }
         return (_c = (_b = projectTarget === null || projectTarget === void 0 ? void 0 : projectTarget[scope]) === null || _b === void 0 ? void 0 : _b[prop]) !== null && _c !== void 0 ? _c : '';
     };
-    outputs = outputs.map(replaceExpressions);
-    (0,core.debug)(`🐞 Found ${outputs} as outputs for ${target}`);
-    return outputs;
+    const resolvedOutputs = outputs.map(replaceExpressions);
+    (0,core.debug)(`🐞 Found ${resolvedOutputs} as outputs for ${target}`);
+    return resolvedOutputs;
 }
 function assertNxInstalled() {
     return modules_awaiter(this, void 0, void 0, function* () {

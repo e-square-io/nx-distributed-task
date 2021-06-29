@@ -66413,9 +66413,9 @@ function restoreNxCache(primaryKey, restoreKeys) {
     return modules_awaiter(this, void 0, void 0, function* () {
         (0,core.debug)(`🐞 Restoring NX cache from ${primaryKey}`);
         try {
-            const hitKey = yield (0,cache.restoreCache)([NX_CACHE_PATH], primaryKey, restoreKeys);
-            if (hitKey) {
-                (0,core.info)(`✅ Cache hit: ${hitKey}`);
+            const key = yield (0,cache.restoreCache)([NX_CACHE_PATH], primaryKey, restoreKeys);
+            if (key) {
+                (0,core.info)(`✅ Cache hit: ${key}`);
             }
             else {
                 (0,core.info)(`❕ Cache miss`);

@@ -66685,7 +66685,6 @@ function uploadProjectsOutputs(inputs) {
         const projects = getWorkspaceProjects();
         const artifactName = inputs.target;
         yield Promise.all(inputs.projects.map((project) => uploadArtifact(artifactName, getProjectOutputs(projects, project, inputs.target))));
-        (0,core.setOutput)('artifactName', artifactName);
         (0,core.endGroup)();
     });
 }
@@ -66706,9 +66705,7 @@ function main() {
             projects: (0,core.getInput)('projects', { required: true })
                 .split(',')
                 .filter((arg) => arg.length > 0),
-            maxParallel: isNaN(parseInt((0,core.getInput)('maxParallel')))
-                ? 3
-                : parseInt((0,core.getInput)('maxParallel')),
+            maxParallel: isNaN(parseInt((0,core.getInput)('maxParallel'))) ? 3 : parseInt((0,core.getInput)('maxParallel')),
             args: (0,core.getInput)('args')
                 .split(' ')
                 .filter((arg) => arg.length > 0),

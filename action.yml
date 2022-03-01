@@ -1,0 +1,66 @@
+name: 'Nx distributed task'
+branding:
+  icon: command
+  color: white
+author: 'e-square.io'
+description: 'Executes Nx task'
+inputs:
+  target:
+    description: 'Target to run'
+    required: true
+  projects:
+    description: 'Comma-delimited list of projects to run against target'
+    required: false
+    default: ''
+  distribution:
+    description: 'Current distribution run, required when running in a matrix'
+    required: false
+  bucket:
+    description: 'Current distribution run, required when running in a matrix'
+    required: false
+    deprecationMessage: 'deprecated, use distribution input instead'
+  maxParallel:
+    description: 'Maximum NX cli parallel runs'
+    required: false
+    default: '3'
+  uploadOutputs:
+    description: "Should upload target's outputs from all distributed jobs"
+    required: false
+    default: 'true'
+  args:
+    description: 'space-delimited args to add to nx command execution'
+    required: false
+  nxCloud:
+    description: 'Enable support of Nx Cloud'
+    required: false
+    default: 'false'
+  workingDirectory:
+    description: 'Path to the Nx workspace, needed if not the repository root'
+    required: false
+  debug:
+    description: 'Enable Debug mode. Will not execute the target'
+    required: false
+    default: 'false'
+runs:
+  using: 'composite'
+  steps:
+    - name: Execute target
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const { default: setEnv } = require('${{ github.action_path }}/set-env.js');
+          const { default: main } = require('${{ github.action_path }}/main.js');
+
+          setEnv(${{ toJSON(inputs) }}, process);
+          await main(context, core, exec, glob, io, require);
+
+    - name: Post Execute target
+      if: ${{ !fromJSON(inputs.nxCloud) }}
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const { default: setEnv } = require('${{ github.action_path }}/set-env.js');
+          const { default: main } = require('${{ github.action_path }}/main.js');
+
+          setEnv(${{ toJSON(inputs) }}, process);
+          await main(context, core, exec, glob, io, require);

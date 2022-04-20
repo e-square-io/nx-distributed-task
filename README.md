@@ -3,13 +3,13 @@
 [![NPM](https://img.shields.io/github/package-json/v/e-square-io/nx-distributed-task?&logo=npm&style=flat-square)]()
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/e-square-io/nx-github-actions/Main%20Workflow/main?event=push&logo=github&style=flat-square)](https://github.com/e-square-io/nx-github-actions/actions/workflows/main.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/e-square-io/nx-github-actions?logo=codecov&style=flat-square&token=PVPVUJAD1X)](https://app.codecov.io/gh/e-square-io/nx-github-actions)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](https://github.com/e-square-io/nx-github-actions#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](https://github.com/e-square-io/nx-github-actions#contributors-)
 [![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square)](https://github.com/e-square-io/nx-github-actions/blob/main/LICENSE)
 
 ## Summary
 
 Github Action that runs nx `run-many` for the specified target and projects.  
-This action was designed to consume the outputs of [@e-square/nx-affected-matrix](https://github.com/marketplace/actions/nx-affected-task) in order to distribute jobs with ease.
+This action was designed to consume the outputs of [@e-square/nx-affected-matrix](https://github.com/marketplace/actions/nx-affected-matrix) in order to distribute jobs with ease.
 
 Check out the monorepo's [README](https://github.com/e-square-io/nx-github-actions#usage) for a full usage example of both actions with GitHub Actions' matrix
 
